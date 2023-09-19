@@ -11,6 +11,8 @@ class Event extends Model
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'start',
+        'end'
     ];
 }

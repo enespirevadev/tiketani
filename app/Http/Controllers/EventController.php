@@ -33,11 +33,13 @@ class EventController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // TODO Verify validation and redirect to index with errors if not validated
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
+            'start' => 'required',
+            'end' => 'required',
         ]);
+        var_dump($validated);exit;
         Event::create($validated);
 
         return redirect(route('events.index'));

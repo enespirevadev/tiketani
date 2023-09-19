@@ -26,6 +26,7 @@
                             <td>{{ $event->id }}</td>
                             <td>{{ $event->name }}</td>
                             <td>{{ $event->description }}</td>
+                            <td>{{ $event->date}}</td>
                             <td>{{ $event->created_at->format('d.m.Y H:i') }}</td>
                             <td>
                                 <a href="{{ route('events.edit', $event) }}">
