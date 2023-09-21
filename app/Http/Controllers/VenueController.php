@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
-use App\Models\Team;
 use App\Models\Venue;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class EventController extends Controller
+class VenueController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): View
     {
-        $events = Event::latest()->get();
-        return view('events.index', [
-            'events' => $events,
+        $venues = Venue::latest()->get();
+        return view('venues.index', [
+            'venues' => $venues,
         ]);
     }
 
@@ -27,10 +25,7 @@ class EventController extends Controller
      */
     public function create(): View
     {
-        $venues = Venue::orderBy('name')->get();
-        $teams = Team::orderBy('name')->get();
-
-        return view('events.create', ['venues' => $venues, 'teams' => $teams]);
+        return view('venues.create');
     }
 
     /**
@@ -41,19 +36,20 @@ class EventController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
-            'start' => 'required',
-            'end' => 'required',
+            'location' => 'required|string|max:255',
+            'address' => 'required|string|max:1000',
+            'seats' =>'required|integer'
         ]);
-        //var_dump($validated);exit;
-        Event::create($validated);
+        // var_dump($validated);exit;
+        Venue::create($validated);
 
-        return redirect(route('events.index'));
+        return redirect(route('venues.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Event $event)
+    public function show(Venue $venue)
     {
         //
     }
@@ -61,34 +57,37 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event): View
+    public function edit(Venue $venue): View
     {
-        return view('events.edit', [
-            'event' => $event,
+        return view('venues.edit', [
+            'venue' => $venue,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event): RedirectResponse
+    public function update(Request $request, Venue $venue): RedirectResponse
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
+            'location' => 'required|string|max:255',
+            'address' => 'required|string|max:1000',
+            'seats' =>'required|integer'
         ]);
-        $event->update($validated);
+        $venue->update($validated);
 
-        return redirect(route('events.index'));
+        return redirect(route('venues.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event): RedirectResponse
+    public function destroy(Venue $venue): RedirectResponse
     {
-        $event->delete();
-
-        return redirect(route('events.index'));
+        $venue->delete();
+ 
+        return redirect(route('venues.index'));
     }
 }

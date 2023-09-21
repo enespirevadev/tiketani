@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TeamController;
+use App\Http\Controllers\VenueController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,5 +35,12 @@ Route::resource('events', EventController::class)
     ->only(['index', 'create', 'edit', 'store', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
+Route::resource('venues', VenueController::class)
+    ->only(['index', 'create', 'edit', 'store', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
 
-require __DIR__.'/auth.php';
+Route::resource('teams', TeamController::class)
+    ->only(['index', 'create', 'edit', 'store', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
+
+require __DIR__ . '/auth.php';

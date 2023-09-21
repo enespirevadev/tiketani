@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('venues', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->dateTime('start');
-            $table->dateTime('end');
-            $table->unsignedInteger('available_seats');
-            $table->unsignedDecimal('categoryA_price', 8, 2);
-            $table->unsignedDecimal('categoryB_price', 8, 2);
-            $table->unsignedDecimal('categoryC_price', 8, 2);
-            $table->unsignedDecimal('categoryD_price', 8, 2);
+            $table->string('location');
+            $table->text('address');
+            $table->integer('seats');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('venues');
     }
 };

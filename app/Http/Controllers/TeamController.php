@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Event;
 use App\Models\Team;
-use App\Models\Venue;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class EventController extends Controller
+class TeamController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): View
     {
-        $events = Event::latest()->get();
-        return view('events.index', [
-            'events' => $events,
+        $teams = Team::latest()->get();
+        return view('teams.index', [
+            'teams' => $teams,
         ]);
     }
 
@@ -27,10 +25,7 @@ class EventController extends Controller
      */
     public function create(): View
     {
-        $venues = Venue::orderBy('name')->get();
-        $teams = Team::orderBy('name')->get();
-
-        return view('events.create', ['venues' => $venues, 'teams' => $teams]);
+        return view('teams.create');
     }
 
     /**
@@ -40,20 +35,18 @@ class EventController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
-            'start' => 'required',
-            'end' => 'required',
+            // 'logo' => 'required|string|max:255',
         ]);
         //var_dump($validated);exit;
-        Event::create($validated);
+        Team::create($validated);
 
-        return redirect(route('events.index'));
+        return redirect(route('teams.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Event $event)
+    public function show(Team $team)
     {
         //
     }
@@ -61,34 +54,34 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event): View
+    public function edit(Team $team): View
     {
-        return view('events.edit', [
-            'event' => $event,
+        return view('teams.edit', [
+            'team' => $team,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event): RedirectResponse
+    public function update(Request $request, Team $team): RedirectResponse
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
+            'logo' => 'required|string|max:255',
         ]);
-        $event->update($validated);
+        $team->update($validated);
 
-        return redirect(route('events.index'));
+        return redirect(route('teams.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event): RedirectResponse
+    public function destroy(Team $team): RedirectResponse
     {
-        $event->delete();
-
-        return redirect(route('events.index'));
+        $team->delete();
+ 
+        return redirect(route('teams.index'));
     }
 }

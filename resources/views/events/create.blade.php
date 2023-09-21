@@ -44,6 +44,43 @@
             </div>
 
             <div>
+                <x-input-label for="venue" :value="__('Venue')" />
+                <select name="venue" data-te-select-init>
+                    @foreach ($venues as $venue)
+                        <option value="{{ $venue->id }}">
+                            {{ $venue->name }}
+                        </option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('venue')" class="mt-2" />
+            </div>
+
+            <div>
+                <x-input-label for="teamA" :value="__('Team A')" />
+                <select name="teamA" data-te-select-init>
+                    @foreach ($teams as $teamA)
+                        <option value="{{ $teamA->id }}">
+                            {{ $teamA->name }}
+                        </option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('teamA')" class="mt-2" />
+            </div>
+
+            <div>
+                <x-input-label for="teamB" :value="__('Team B')" />
+                <select name="teamB" data-te-select-init>
+                    @foreach ($teams as $teamB)
+                        <option value="{{ $teamB->id }}">
+                            {{ $teamB->name }}
+                        </option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('teamB')" class="mt-2" />
+            </div>
+
+
+            <div>
                 <x-primary-button class="mt-4">{{ __('Save') }}</x-primary-button>
             </div>
         </form>
