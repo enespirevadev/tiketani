@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Team;
+use App\Models\Tournament;
 use App\Models\Venue;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+
+use Illuminate\Support\Carbon;
 
 class EventController extends Controller
 {
@@ -16,9 +19,16 @@ class EventController extends Controller
      */
     public function index(): View
     {
+        $tournaments = Tournament::all()->pluck('name', 'id')->toArray();
+        $venues = Venue::all()->pluck('name', 'id')->toArray();
+        $teams = Team::all()->pluck('name', 'id')->toArray();
         $events = Event::latest()->get();
+
         return view('events.index', [
             'events' => $events,
+            'venues' => $venues, 
+            'teams' => $teams, 
+            'tournaments' => $tournaments,
         ]);
     }
 
@@ -27,10 +37,11 @@ class EventController extends Controller
      */
     public function create(): View
     {
+        $tournaments = Tournament::orderBy('name')->get();
         $venues = Venue::orderBy('name')->get();
         $teams = Team::orderBy('name')->get();
 
-        return view('events.create', ['venues' => $venues, 'teams' => $teams]);
+        return view('events.create', ['venues' => $venues, 'teams' => $teams, 'tournaments' => $tournaments]);
     }
 
     /**
@@ -43,9 +54,24 @@ class EventController extends Controller
             'description' => 'required|string|max:1000',
             'start' => 'required',
             'end' => 'required',
+            'available_seats' => 'required',
+            'tournament_id' => 'required',
+            'venue_id' => 'required',
+            'teamA_id' => 'required',
+            'teamB_id' => 'required',
+            'categoryA_price' => 'required',
+            'categoryB_price' => 'required',
+            'categoryC_price' => 'required',
+            'categoryD_price' => 'required',
         ]);
-        //var_dump($validated);exit;
-        Event::create($validated);
+#        var_dump($validated);exit;
+        if ($validated) {
+// var_dump($request->start);
+//             $validated['start'] = Carbon::createFromFormat('d/m/Y, H:i', $request->start)->format('Y-m-d');
+// var_dump($validated['start']);
+// exit;
+            Event::create($validated);
+        }
 
         return redirect(route('events.index'));
     }

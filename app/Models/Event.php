@@ -13,6 +13,15 @@ class Event extends Model
         'name',
         'description',
         'start',
-        'end'
+        'end',
+        'available_seats',
+        'categoryA_price',
+        'categoryB_price',
+        'categoryC_price',
+        'categoryD_price',
+        'tournament_id',
+        'venue_id',
+        'teamA_id',
+        'teamB_id'
     ];
 }

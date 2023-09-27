@@ -4,6 +4,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\VenueController;
+use App\Http\Controllers\TournamentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,10 @@ Route::resource('venues', VenueController::class)
     ->middleware(['auth', 'verified']);
 
 Route::resource('teams', TeamController::class)
+    ->only(['index', 'create', 'edit', 'store', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
+
+Route::resource('tournaments', TournamentController::class)
     ->only(['index', 'create', 'edit', 'store', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
