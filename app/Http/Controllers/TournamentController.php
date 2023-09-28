@@ -17,7 +17,6 @@ class TournamentController extends Controller
         $tournaments = Tournament::latest()->get();
         return view('tournaments.index', [
             'tournaments' => $tournaments
-            ,
         ]);
     }
 
@@ -41,8 +40,8 @@ class TournamentController extends Controller
         //var_dump($validated);exit;
         Tournament::create($validated);
 
-        return redirect(route('tournaments.index'));
-    
+        return redirect(route('tournaments.update'));
+
     }
 
     /**
@@ -74,7 +73,7 @@ class TournamentController extends Controller
         ]);
         $tournament->update($validated);
 
-        return redirect(route('tournaments.index'));
+        return redirect(route('tournaments.store'));
     }
 
     /**

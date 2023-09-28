@@ -43,7 +43,7 @@ class VenueController extends Controller
         // var_dump($validated);exit;
         Venue::create($validated);
 
-        return redirect(route('venues.index'));
+        return redirect(route('venues.update'));
     }
 
     /**
@@ -78,7 +78,7 @@ class VenueController extends Controller
         ]);
         $venue->update($validated);
 
-        return redirect(route('venues.index'));
+        return redirect(route('venues.store'));
     }
 
     /**

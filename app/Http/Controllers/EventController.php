@@ -89,9 +89,11 @@ class EventController extends Controller
      */
     public function edit(Event $event): View
     {
-        return view('events.edit', [
-            'event' => $event,
-        ]);
+        $tournaments = Tournament::orderBy('name')->get();
+        $venues = Venue::orderBy('name')->get();
+        $teams = Team::orderBy('name')->get();
+
+        return view('events.edit', ['event' => $event, 'venues' => $venues, 'teams' => $teams, 'tournaments' => $tournaments]);
     }
 
     /**
@@ -102,6 +104,17 @@ class EventController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
+            'start' => 'required',
+            'end' => 'required',
+            'available_seats' => 'required',
+            'tournament_id' => 'required',
+            'venue_id' => 'required',
+            'teamA_id' => 'required',
+            'teamB_id' => 'required',
+            'categoryA_price' => 'required',
+            'categoryB_price' => 'required',
+            'categoryC_price' => 'required',
+            'categoryD_price' => 'required',
         ]);
         $event->update($validated);
 

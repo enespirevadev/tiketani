@@ -40,7 +40,7 @@ class TeamController extends Controller
         //var_dump($validated);exit;
         Team::create($validated);
 
-        return redirect(route('teams.index'));
+        return redirect(route('teams.update'));
     }
 
     /**
@@ -72,7 +72,7 @@ class TeamController extends Controller
         ]);
         $team->update($validated);
 
-        return redirect(route('teams.index'));
+        return redirect(route('teams.store'));
     }
 
     /**
