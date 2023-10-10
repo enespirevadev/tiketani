@@ -64,12 +64,11 @@ class EventController extends Controller
             'categoryC_price' => 'required',
             'categoryD_price' => 'required',
         ]);
-#        var_dump($validated);exit;
+
         if ($validated) {
-// var_dump($request->start);
-//             $validated['start'] = Carbon::createFromFormat('d/m/Y, H:i', $request->start)->format('Y-m-d');
-// var_dump($validated['start']);
-// exit;
+            $validated['start'] = date('Y-m-d H:i:s', strtotime($request->start));
+            $validated['end'] = date('Y-m-d H:i:s', strtotime($request->end));
+
             Event::create($validated);
         }
 
@@ -116,7 +115,13 @@ class EventController extends Controller
             'categoryC_price' => 'required',
             'categoryD_price' => 'required',
         ]);
-        $event->update($validated);
+
+        if ($validated) {
+            $validated['start'] = date('Y-m-d H:i:s', strtotime($request->start));
+            $validated['end'] = date('Y-m-d H:i:s', strtotime($request->end));
+
+            $event->update($validated);
+        }
 
         return redirect(route('events.index'));
     }
