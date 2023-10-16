@@ -27,6 +27,9 @@
                     <x-nav-link :href="route('tournaments.index')" :active="request()->routeIs('tournaments.index')">
                         {{ __('Tournaments') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('customers.index')" :active="request()->routeIs('customers.index')">
+                        {{ __('Customers') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -98,9 +101,12 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('venues.index')" :active="request()->routeIs('venues.index')">
                 {{ __('Venues') }}
-            </x-responsive-nav-link>    
+            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('tournaments.index')" :active="request()->routeIs('tournaments.index')">
                 {{ __('Tournaments') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('customers.index')" :active="request()->routeIs('customers.index')">
+                {{ __('Customers') }}
             </x-responsive-nav-link>
         </div>
 

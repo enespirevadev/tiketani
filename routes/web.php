@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeamController;
-use App\Http\Controllers\VenueController;
 use App\Http\Controllers\TournamentController;
+use App\Http\Controllers\VenueController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,11 +21,14 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-
- // Route::get('/', function () {
+// Route::get('/', function () {
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/checkout/{event}', [HomeController::class, 'checkout'])->name('home.checkout');
+Route::post('/checkout/{event}', [HomeController::class, 'checkout'])->name('home.checkout');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -48,6 +53,14 @@ Route::resource('teams', TeamController::class)
     ->middleware(['auth', 'verified']);
 
 Route::resource('tournaments', TournamentController::class)
+    ->only(['index', 'create', 'edit', 'store', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
+
+Route::resource('customers', CustomerController::class)
+    ->only(['index', 'create', 'edit', 'store', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
+
+Route::resource('orders', OrderController::class)
     ->only(['index', 'create', 'edit', 'store', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
