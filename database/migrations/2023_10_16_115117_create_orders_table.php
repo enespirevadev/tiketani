@@ -16,12 +16,15 @@ return new class extends Migration
             $table->unsignedBigInteger('event_id');
             $table->unsignedBigInteger('customer_id');
 
-            $table->unsignedInteger('order_number');
+            $table->unsignedBigInteger('order_number');
             $table->dateTime('order_date');
+            $table->enum('order_status', ['new', 'payment_pending', 'shipping', 'canceled', 'completed'])->default('new');
             $table->unsignedInteger('seats');
-            $table->enum('category', ['A', 'B', 'C', 'D'])->nullable();
+            $table->enum('category', ['A', 'B', 'C', 'D'])->default('A');
             $table->unsignedDecimal('category_price', 8, 2);
             $table->unsignedDecimal('total_price', 8, 2);
+            $table->text('comment')->nullable();
+            $table->text('payment')->nullable();
 
             $table->foreign('event_id')->references('id')->on('events');
             $table->foreign('customer_id')->references('id')->on('customers');

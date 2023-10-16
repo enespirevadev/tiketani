@@ -1,26 +1,8 @@
 <header>
 
-    {{-- @if (Route::has('login'))
-            <div class="flex-auto w-90 text-right">
-                @auth
-                    <a href="{{ url('/dashboard') }}"
-                        class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                @else
-                    <a href="{{ route('login') }}"
-                        class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
-                        in</a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
-                            class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                    @endif
-                @endauth
-            </div>
-    @endif --}}
-
-
     <!-- Navbar -->
-    <nav class="sticky top-0 z-10 flex w-full items-center justify-between bg-lime-500 py-2 text-neutral-600 shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 dark:text-neutral-200 md:flex-wrap md:justify-start" data-te-navbar-ref>
+    <nav class="sticky top-0 z-10 flex w-full items-center justify-between bg-lime-500 py-2 text-neutral-600 shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 dark:text-neutral-200 md:flex-wrap md:justify-start"
+        data-te-navbar-ref>
         <div class="px-6">
             <!-- Hamburger menu button -->
             <button
@@ -53,19 +35,27 @@
                     </li>
                     <li data-te-nav-item-ref>
                         <a class="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white md:p-2 [&.active]:border-primary [&.active]:text-primary"
-                            href="#!" data-te-nav-link-ref data-te-ripple-init
+                            href="#events" data-te-nav-link-ref data-te-ripple-init
                             data-te-ripple-color="light">Events</a>
                     </li>
                     <li data-te-nav-item-ref>
                         <a class="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white md:p-2 [&.active]:border-primary [&.active]:text-primary"
-                            href="#!" data-te-nav-link-ref data-te-ripple-init
+                            href="#about" data-te-nav-link-ref data-te-ripple-init
                             data-te-ripple-color="light">About</a>
                     </li>
-                    <li data-te-nav-item-ref>
-                        <a class="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white md:p-2 [&.active]:border-primary [&.active]:text-primary "
-                            href="#!" data-te-nav-link-ref data-te-ripple-init
-                            data-te-ripple-color="light">Login/Registration</a>
-                    </li>
+                    @if (Route::has('login'))
+                        <li data-te-nav-item-ref>
+                            @auth
+                                <a class="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white md:p-2 [&.active]:border-primary [&.active]:text-primary "
+                                    href="{{ url('/dashboard') }}" data-te-nav-link-ref data-te-ripple-init
+                                    data-te-ripple-color="light">Dashboard</a>
+                            @else
+                                <a class="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white md:p-2 [&.active]:border-primary [&.active]:text-primary "
+                                    href="{{ url('/login') }}" data-te-nav-link-ref data-te-ripple-init
+                                    data-te-ripple-color="light">Login/Registration</a>
+                            @endauth
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -84,12 +74,6 @@
                     <h2 class="mb-4 text-4xl font-semibold">TIKETANI - Your No #1 Marketplace for Football Events!</h2>
                     <h4 class="mb-6 text-xl font-semibold">See all upcoming events, buy your ticket and enjoy the game
                         of your favorite football team.</h4>
-
-                    {{-- <button type="button"
-                        class="rounded border-2 border-neutral-50 px-7 pb-[8px] pt-[10px] text-sm font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-                        data-te-ripple-init data-te-ripple-color="light">
-                        Call to action
-                    </button> --}}
                 </div>
             </div>
         </div>
