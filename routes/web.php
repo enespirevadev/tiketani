@@ -61,7 +61,7 @@ Route::resource('customers', CustomerController::class)
     ->middleware(['auth', 'verified']);
 
 Route::resource('orders', OrderController::class)
-    ->only(['index', 'create', 'edit', 'store', 'update', 'destroy'])
+    ->only(['index', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
 require __DIR__ . '/auth.php';

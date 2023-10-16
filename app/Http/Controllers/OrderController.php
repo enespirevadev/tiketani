@@ -22,29 +22,6 @@ class OrderController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): View
-    {
-        return view('orders.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-
-        if ($validated) {
-            Order::create($validated);
-        }
-
-        return redirect(route('orders.index'));
-    }
 
     /**
      * Display the specified resource.

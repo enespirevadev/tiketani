@@ -2,9 +2,6 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Orders') }}
-            <a href="{{ route('orders.create') }}">
-                <x-primary-button class="ml-5 mt-4">{{ __('Create Order') }}</x-primary-button>
-            </a>
         </h2>
     </x-slot>
 

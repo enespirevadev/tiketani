@@ -42,7 +42,7 @@ class HomeController extends Controller
         return view('home', $viewData);
     }
 
-    public function checkout(Request $request, Event $event): RedirectResponse
+    public function checkout(Request $request, Event $event)
     {
         $categories = [
             'A' => 'Category A (' . $event->categoryA_price . ' EUR)',
