@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tournament;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 
 class TournamentController extends Controller
@@ -40,7 +41,7 @@ class TournamentController extends Controller
         //var_dump($validated);exit;
         Tournament::create($validated);
 
-        return redirect(route('tournaments.update'));
+        return redirect(route('tournaments.index'));
 
     }
 

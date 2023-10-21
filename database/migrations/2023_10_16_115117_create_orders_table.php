@@ -26,8 +26,8 @@ return new class extends Migration
             $table->text('comment')->nullable();
             $table->text('payment')->nullable();
 
-            $table->foreign('event_id')->references('id')->on('events');
-            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -15,37 +15,60 @@
                             <table class="min-w-full text-left text-sm font-light">
                                 <thead class="border-b font-medium dark:border-neutral-500">
                                     <tr>
-            
-                        <th scope="col" class="px-6 py-4">ID</th>
-                        <th scope="col" class="px-6 py-4">Name</th>
-                        <th scope="col" class="px-6 py-4">Description</th>
-                        <th scope="col" class="px-6 py-4">#</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($orders as $order)
-                        <tr class="border-b dark:border-neutral-500">
-                            <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $order->id }}</td>
-                            <td class="whitespace-nowrap px-6 py-4">{{ $order->name }}</td>
-                            <td class="whitespace-nowrap px-6 py-4">{{ $order->description }}</td>
-                            <td class="whitespace-nowrap px-6 py-4">
-                                <a href="{{ route('orders.edit', $order) }}">
-                                    <x-primary-button class="ml-5 mt-4">{{ __('Edit') }}</x-primary-button>
-                                </a>
 
-                                <form method="POST" action="{{ route('orders.destroy', $order) }}">
+                                        <th scope="col" class="px-6 py-4">ID</th>
+                                        <th scope="col" class="px-6 py-4">Customer</th>
+                                        <th scope="col" class="px-6 py-4">Event</th>
+                                        <th scope="col" class="px-6 py-4">Order Number</th>
+                                        <th scope="col" class="px-6 py-4">Order Date</th>
+                                        <th scope="col" class="px-6 py-4">Order Status</th>
+                                        <th scope="col" class="px-6 py-4">Seats</th>
+                                        <th scope="col" class="px-6 py-4">Category</th>
+                                        <th scope="col" class="px-6 py-4">Category Price</th>
+                                        <th scope="col" class="px-6 py-4">Total Price</th>
+                                        <th scope="col" class="px-6 py-4">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($orders as $order)
+                                        <tr class="border-b dark:border-neutral-500">
+                                            <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $order->id }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">
+                                                <a href="/customers/{{ $order->customer->id }}/edit">
+                                                    {{ $order->customer->firstname . ' ' . $order->customer->lastname }}
+                                                </a>
+                                            </td>
+                                            <td class="whitespace-nowrap px-6 py-4">
+                                                <a href="/events/{{ $order->event->id }}/edit">
+                                                    {{ $order->event->name }}
+                                                </a>
+                                            </td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $order->order_number }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $order->order_date }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $order->order_status }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $order->seats }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $order->category }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $order->category_price }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $order->total_price }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">
+                                                <a href="{{ route('orders.edit', $order) }}">
+                                                    <x-primary-button
+                                                        class="ml-5 mt-4">{{ __('Edit') }}</x-primary-button>
+                                                </a>
+
+                                                {{-- <form method="POST" action="{{ route('orders.destroy', $order) }}">
                                     @csrf
                                     @method('delete')
                                     <x-dropdown-link :href="route('orders.destroy', $order)"
-                                        onclick="order.preventDefault(); this.closest('form').submit();">
+                                        onclick="event.preventDefault(); this.closest('form').submit();">
                                         {{ __('Delete') }}
                                     </x-dropdown-link>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
+                                </form> --}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 </x-app-layout>

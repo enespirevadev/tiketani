@@ -41,7 +41,8 @@
         <div class="shadow-sm rounded-lg divide-y">
             <a name="events"></a>
             <h2 class="text-2xl font-black">All upcoming Football Events</h2>
-
+            
+            @include('home.filters')
             @include('home.listing')
         </div>
 

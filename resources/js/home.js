@@ -9,13 +9,14 @@ Alpine.start();
 import {
     Select,
     Datetimepicker,
+    Datepicker,
     Input,
     Modal,
     Ripple,
     initTE,
 } from "tw-elements";
 
-initTE({ Select, Datetimepicker, Input, Modal, Ripple });
+initTE({ Select, Datetimepicker,Datepicker, Input, Modal, Ripple });
 
 const checkoutModal = document.getElementById("checkoutModal");
 checkoutModal.addEventListener("show.te.modal", (e) => {

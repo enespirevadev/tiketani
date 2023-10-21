@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Team;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 
 class TeamController extends Controller
@@ -40,7 +41,8 @@ class TeamController extends Controller
         //var_dump($validated);exit;
         Team::create($validated);
 
-        return redirect(route('teams.update'));
+        return redirect(route('teams.index'));
+        //teams.update
     }
 
     /**
@@ -68,7 +70,7 @@ class TeamController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'logo' => 'required|string|max:255',
+            //'logo' => 'required|string|max:255'
         ]);
         $team->update($validated);
 

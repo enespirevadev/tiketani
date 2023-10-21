@@ -1,7 +1,10 @@
 <div class="grid-cols-1 sm:grid md:grid-cols-3 ">
+    @if ($events->isEmpty())
+        <p class="mt-6">No Events found.</p>
+    @endif
+
     @foreach ($events as $event)
-        <div
-            class="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+        <div class="flex mx-12 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
             <a href="#!">
                 <img class="rounded-t-lg"
                     src="https://images.unsplash.com/photo-1589487391730-58f20eb2c308?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2674&q=80"
@@ -32,7 +35,7 @@
 
 <!-- Modal -->
 <div data-te-modal-init
-    class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+    class="fixed left-100% top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
     id="checkoutModal" tabindex="-1" aria-labelledby="exampleModalScrollableLabel" aria-hidden="true">
     <div data-te-modal-dialog-ref
         class="pointer-events-none relative h-[calc(100%-1rem)] w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]">

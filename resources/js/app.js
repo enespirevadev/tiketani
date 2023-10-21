@@ -6,9 +6,9 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-import { Select, Datetimepicker, Input, Modal, Ripple, Chart, initTE } from "tw-elements";
+import { Select, Datetimepicker, Datepicker, Input, Modal, Ripple, Chart, initTE } from "tw-elements";
 
-initTE({ Select, Datetimepicker, Input, Modal, Ripple, Chart });
+initTE({ Select, Datetimepicker, Datepicker, Input, Modal, Ripple, Chart });
 
 // const pickerTimeOptions = document.querySelector("#start-datetimepicker");
 // new Datetimepicker(pickerTimeOptions, {

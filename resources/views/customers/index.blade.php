@@ -19,8 +19,13 @@
                                 <thead class="border-b font-medium dark:border-neutral-500">
                                     <tr>
                                         <th scope="col" class="px-6 py-4">ID</th>
-                                        <th scope="col" class="px-6 py-4">Name</th>
-                                        <th scope="col" class="px-6 py-4">Logo</th>
+                                        <th scope="col" class="px-6 py-4">Gender</th>
+                                        <th scope="col" class="px-6 py-4">First Name</th>
+                                        <th scope="col" class="px-6 py-4">Last Name</th>
+                                        <th scope="col" class="px-6 py-4">Email</th>
+                                        <th scope="col" class="px-6 py-4">Country</th>
+                                        <th scope="col" class="px-6 py-4">Street Address</th>
+                                        <th scope="col" class="px-6 py-4">Zipcode</th>
                                         <th scope="col" class="px-6 py-4">#</th>
                                     </tr>
                                 </thead>
@@ -28,8 +33,13 @@
                                     @foreach ($customers as $customer)
                                         <tr class="border-b dark:border-neutral-500">
                                             <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $customer->id }}</td>
-                                            <td class="whitespace-nowrap px-6 py-4">{{ $customer->name }}</td>
-                                            <td class="whitespace-nowrap px-6 py-4">{{ $customer->logo }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $customer->gender }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $customer->firstname }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $customer->lastname }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $customer->email }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $customer->address_country }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $customer->address_street }}</td>
+                                            <td class="whitespace-nowrap px-6 py-4">{{ $customer->address_zipcode }}</td>
                                             <td class="whitespace-nowrap px-6 py-4">
                                                 <a href="{{ route('customers.edit', $customer) }}">
                                                     <x-primary-button
@@ -40,7 +50,7 @@
                                                     @csrf
                                                     @method('delete')
                                                     <x-dropdown-link :href="route('customers.destroy', $customer)"
-                                                        onclick="customer.preventDefault(); this.closest('form').submit();">
+                                                        onclick="event.preventDefault(); this.closest('form').submit();">
                                                         {{ __('Delete') }}
                                                     </x-dropdown-link>
                                                 </form>

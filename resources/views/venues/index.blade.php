@@ -46,7 +46,7 @@
                                                     @csrf
                                                     @method('delete')
                                                     <x-dropdown-link :href="route('venues.destroy', $venue)"
-                                                        onclick="venue.preventDefault(); this.closest('form').submit();">
+                                                        onclick="event.preventDefault(); this.closest('form').submit();">
                                                         {{ __('Delete') }}
                                                     </x-dropdown-link>
                                                 </form>

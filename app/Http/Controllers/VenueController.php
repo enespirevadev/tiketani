@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Venue;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 
 class VenueController extends Controller
@@ -31,7 +32,7 @@ class VenueController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request ): RedirectResponse
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -43,7 +44,7 @@ class VenueController extends Controller
         // var_dump($validated);exit;
         Venue::create($validated);
 
-        return redirect(route('venues.update'));
+        return redirect(route('venues.index'));
     }
 
     /**

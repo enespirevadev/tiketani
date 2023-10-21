@@ -7,6 +7,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+use Illuminate\Support\Facades\Schema;
+
+
 class CustomerController extends Controller
 {
 
@@ -36,7 +39,13 @@ class CustomerController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'gender' => 'required',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'address_country' => 'required|string|max:500',
+            'address_street' => 'required|string|max:500',
+            'address_zipcode' => 'required|string|max:255',
         ]);
 
         if ($validated) {
@@ -68,7 +77,13 @@ class CustomerController extends Controller
     public function update(Request $request, Customer $customer): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'gender' => 'required',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'address_country' => 'required|string|max:500',
+            'address_street' => 'required|string|max:500',
+            'address_zipcode' => 'required|string|max:255',
         ]);
 
         if ($validated) {

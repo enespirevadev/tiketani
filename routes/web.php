@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/', [HomeController::class, 'index'])->name('home.search');
+
 
 Route::get('/checkout/{event}', [HomeController::class, 'checkout'])->name('home.checkout');
 Route::post('/checkout/{event}', [HomeController::class, 'checkout'])->name('home.checkout');

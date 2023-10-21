@@ -10,7 +10,6 @@ use App\Models\Tournament;
 use App\Models\Venue;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 
 class HomeController extends Controller
 {
@@ -19,10 +18,40 @@ class HomeController extends Controller
      */
     public function index(Request $request): View
     {
+        $events = [];
+        if ($request->isMethod('post')) {
+            $filterVenue = $request->input('venue');
+            $filterTeam = $request->input('team');
+            $filterTournament = $request->input('tournament');
+
+            unset($filterTeam[0]);
+            unset($filterVenue[0]);
+            unset($filterTournament[0]);
+
+            $where = [];
+            if($filterTeam) {
+                $where['teamA_id'] = $filterTeam;
+#                $where['teamB_id'] = $filterTeam;
+            }
+            if($filterVenue) {
+                $where['venue_id'] = $filterVenue;
+            }
+            if($filterTournament) {
+                $where['tournament_id'] = $filterTournament;
+            }
+
+            $events = Event::where($where)->get();
+
+            // var_dump($where);
+            // var_dump($events);
+            // exit;
+        } else {
+            $events = Event::latest()->get();
+        }
+
         $tournaments = Tournament::all()->pluck('name', 'id')->toArray();
         $venues = Venue::all()->pluck('name', 'id')->toArray();
         $teams = Team::all()->pluck('name', 'id')->toArray();
-        $events = Event::latest()->get();
 
         $viewData = [
             'events' => $events,

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('venues', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
-            $table->string('location');
-            $table->text('address');
-            $table->integer('seats');
+            $table->text('description')->nullable();
+            $table->string('location')->nullable();
+            $table->text('address')->nullable();
+            $table->integer('seats')->default(0);
             $table->timestamps();
         });
     }

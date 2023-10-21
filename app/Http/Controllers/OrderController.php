@@ -45,7 +45,13 @@ class OrderController extends Controller
     public function update(Request $request, Order $order): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'order_number' => 'required',
+            'order_date' => 'required',
+            'order_status' => 'required',
+            'seats' => 'required',
+            'category' => 'required',
+            'category_price' => 'required',
+            'total_price' => 'required',
         ]);
 
         if ($validated) {
